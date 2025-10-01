@@ -2,8 +2,17 @@
 {% load static %}
 
 {% block title %}
-    INE México - Instituto Nacional Electoral  
+    Inicio de sesion - INE  
 {% endblock %}
 
 {% block content %}
+<form action="{% url 'login_process' %}" method="POST">
+    {% csrf_token %}
+    <input type="email" placeholder="Ingresa tu correo" name="email">
+    <input type="password" placeholder="Ingresa tu corntrasena" name="password">
+    <button type="submit">Iniciar sesion</button>
+    {% for message in messages %}<p>{{ message }}</p>{% endfor %}
+</form>
+
+<p>Aun no tienes cuenta? <a href="{% url 'signup' %}"> Crea una dando click aqui</a></p>
 {% endblock %}

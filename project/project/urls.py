@@ -17,9 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app import  views
+from app.scripts.logic import login, signup
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index, name='index' ),
-    path('aviso-de-privacidad/', views.privacy, name='priv')
+    path('aviso-de-privacidad/', views.privacy, name='priv'),
+    path('login/', views.login_view, name='login'),
+    path('signup/', views.signup_view, name='signup'),
+    path('login-process/', login.login_process, name='login_process'),
+    path('signup-process/', signup.signup, name='signup_process')
 ]

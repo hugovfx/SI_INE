@@ -1,0 +1,21 @@
+{% extends "template.html" %} 
+{% load static %}
+
+{% block title %}
+    Inicio de sesion - INE  
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'signup_process' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="nombre_completo" placeholder="Ingresa tu nombre completo">
+    <input type="text" name="curp" placeholder="Ingresa tu curp">
+    <input type="email" placeholder="Ingresa tu correo" name="email">
+    <input type="password" placeholder="Ingresa tu corntrasena" name="password">
+    <input type="password" placeholder="Confirma tu corntrasena" name="confirm">
+    <button type="submit">Registrarse</button>
+    {% for message in messages %}<p>{{ message }}</p>{% endfor %}
+</form>
+
+<p>Ya tienes cuenta? <a href="{% url 'login' %}"> Inicia sesion dando click aqui</a></p>
+{% endblock %}

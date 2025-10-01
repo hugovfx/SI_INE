@@ -9,7 +9,7 @@
 <form action="{% url 'login_process' %}" method="POST">
     {% csrf_token %}
     <input type="email" placeholder="Ingresa tu correo" name="email">
-    <input type="password" placeholder="Ingresa tu corntrasena" name="password">
+    <input type="password" placeholder="Ingresa tu contraseña" name="password">
     <button type="submit">Iniciar sesion</button>
     {% for message in messages %}<p>{{ message }}</p>{% endfor %}
 </form>

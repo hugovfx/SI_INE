@@ -101,6 +101,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_PASSWORD_VALIDATORS.append({
+    'NAME': 'app.validators.ComplexPasswordValidator',
+})
+
 AUTH_USER_MODEL = 'app.CustomUser'
 
 

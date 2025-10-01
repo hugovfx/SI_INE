@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INE México - Instituto Nacional Electoral</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Header -->
-    <header class="header">
+{% extends "template.html" %} 
+{% load static %}
+
+{% block title %}
+    Inicio de sesion - INE
+{% endblock %}
+
+{% block content %}
+<header class="header">
         <div class="nav-container">
             <div class="logo">
     <img src="https://micorreo.ine.mx/skins/elastic/images/ine-logo.png?s=1606950775" alt="Logo INE" style="height:82px;">
@@ -338,6 +336,7 @@
                 3. Acude con la documentación requerida<br>
                 4. Recibe tu credencial provisional<br>
                 5. La credencial definitiva llegará a tu domicilio</p>
+                <a class="btn" href="#">Seguir con el tramite</a>
             </div>
         </div>
     </div>
@@ -387,7 +386,7 @@
     <div id="privacidad-popup">
       <span>
         Este sitio utiliza cookies y trata tus datos conforme al 
-        <a href="aviso-privacidad.html" target="_blank">Aviso de Privacidad</a>.
+        <a href="{% url 'priv' %}" target="_blank">Aviso de Privacidad</a>.
       </span>
       <button onclick="aceptarPrivacidad()">Aceptar</button>
     </div>
@@ -568,5 +567,4 @@
             setTimeout(showEducationalBanner, 1000);
         });
     </script>
-</body>
-</html>
+{% endblock %}

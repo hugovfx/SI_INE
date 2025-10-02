@@ -27,7 +27,12 @@
                 <button class="search-btn">🔍</button>
             </div>
             <!-- Botón de Inicio de Sesión - Agregar en el nav-container después del search-container -->
-<a href="{% url 'login' %}" class="login-btn">Iniciar Sesión</a>
+             {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="login-btn">Cerrar Sesión</a>
+             {% else %}
+                <a href="{% url 'login' %}" class="login-btn">Iniciar Sesión</a>
+            {% endif %}
+
         </div>
     </header>
 

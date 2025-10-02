@@ -1,4 +1,26 @@
+/* Botón de Inicio de Sesión en el Header */
+.login-btn {
+    background: linear-gradient(135deg, #e91e63, #9c27b0);
+    color: white;
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(233,30,99,0.3);
+    display: inline-block;
+}
 
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(233,30,99,0.4);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(233,30,99,0.3);
+}
 * {
     margin: 0;
     padding: 0;

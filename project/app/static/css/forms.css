@@ -1,0 +1,581 @@
+/* Estilos para formularios de login y registro */
+
+/* Contenedor principal del formulario */
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e91e63, #9c27b0);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de fondo animado */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.05"><polygon points="0,0 1000,100 1000,0"/></svg>');
+    background-size: cover;
+    animation: bgMove 20s ease-in-out infinite;
+}
+
+@keyframes bgMove {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(20px); }
+}
+
+/* Card del formulario */
+form {
+    background: white;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    z-index: 1;
+    animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo o título del formulario */
+form::before {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #e91e63, #9c27b0);
+    border-radius: 50%;
+    margin: 0 auto 30px;
+    box-shadow: 0 10px 30px rgba(233,30,99,0.4);
+}
+
+/* Inputs del formulario */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    outline: none;
+    background: #fafafa;
+    color: #333;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+    border-color: #e91e63;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(233,30,99,0.1);
+    transform: translateY(-2px);
+}
+
+form input::placeholder {
+    color: #999;
+    font-size: 14px;
+}
+
+/* Botón de submit */
+form button[type="submit"] {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #e91e63, #9c27b0);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 10px 25px rgba(233,30,99,0.3);
+}
+
+form button[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(233,30,99,0.4);
+}
+
+form button[type="submit"]:active {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(233,30,99,0.3);
+}
+
+/* Mensajes de error/éxito */
+form p {
+    background: #ffebee;
+    color: #c62828;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 15px 0;
+    font-size: 14px;
+    text-align: center;
+    border-left: 4px solid #e91e63;
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+
+/* Enlace inferior */
+body > p {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 15px;
+    z-index: 1;
+    text-align: center;
+    padding: 0 20px;
+}
+
+body > p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid rgba(255,255,255,0.5);
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+}
+
+body > p a:hover {
+    border-bottom-color: white;
+    padding-bottom: 4px;
+}
+
+/* Efecto de carga en el botón */
+form button[type="submit"]:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Íconos en inputs (opcional) */
+form input[type="email"] {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23999" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
+    padding-right: 45px;
+}
+
+form input[type="password"] {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23999" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
+    padding-right: 45px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    form {
+        margin: 20px;
+        padding: 40px 30px;
+    }
+    
+    body > p {
+        bottom: 15px;
+        font-size: 13px;
+    }
+}
+
+/* Animación de entrada para inputs */
+form input {
+    animation: fadeInInput 0.6s ease-out backwards;
+}
+
+form input:nth-child(1) { animation-delay: 0.1s; }
+form input:nth-child(2) { animation-delay: 0.2s; }
+form input:nth-child(3) { animation-delay: 0.3s; }
+form input:nth-child(4) { animation-delay: 0.4s; }
+form input:nth-child(5) { animation-delay: 0.5s; }
+form button { animation-delay: 0.6s; }
+
+@keyframes fadeInInput {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Validación visual */
+form input:valid:not(:placeholder-shown) {
+    border-color: #4caf50;
+    background-color: #f1f8f4;
+}
+
+form input:invalid:not(:placeholder-shown) {
+    border-color: #f44336;
+    background-color: #ffebee;
+}
+
+/* Título del formulario (opcional - agregar antes del primer input) */
+form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 300;
+}
+
+form h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #e91e63, #9c27b0);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* Indicador de fuerza de contraseña */
+.password-strength {
+    height: 4px;
+    border-radius: 2px;
+    margin-top: -15px;
+    margin-bottom: 20px;
+    background: #e0e0e0;
+    overflow: hidden;
+    position: relative;
+}
+
+.password-strength::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    background: linear-gradient(90deg, #f44336, #ff9800, #4caf50);
+    transition: width 0.3s ease;
+}
+
+.password-strength.weak::before { width: 33%; background: #f44336; }
+.password-strength.medium::before { width: 66%; background: #ff9800; }
+.password-strength.strong::before { width: 100%; background: #4caf50; }
+
+/* Checkbox para "Recordarme" */
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+.form-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.form-checkbox label {
+    position: relative;
+    padding-left: 35px;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.form-checkbox label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fafafa;
+    transition: all 0.3s ease;
+}
+
+.form-checkbox input[type="checkbox"]:checked + label::before {
+    background: linear-gradient(135deg, #e91e63, #9c27b0);
+    border-color: #e91e63;
+}
+
+.form-checkbox input[type="checkbox"]:checked + label::after {
+    content: '✓';
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Link de "Olvidé mi contraseña" */
+.forgot-password {
+    text-align: right;
+    margin: -10px 0 20px;
+}
+
+.forgot-password a {
+    color: #e91e63;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.forgot-password a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #e91e63;
+    transition: width 0.3s ease;
+}
+
+.forgot-password a:hover::after {
+    width: 100%;
+}
+
+/* Separador "o" para login social */
+.form-divider {
+    position: relative;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.form-divider::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+.form-divider span {
+    background: white;
+    padding: 0 15px;
+    color: #999;
+    font-size: 13px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Botones de redes sociales (opcional) */
+.social-login {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    color: #666;
+}
+
+.social-btn:hover {
+    border-color: #e91e63;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Mostrar/Ocultar contraseña */
+.password-toggle {
+    position: relative;
+}
+
+.password-toggle input {
+    padding-right: 50px;
+}
+
+.password-toggle-btn {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    font-size: 18px;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.password-toggle-btn:hover {
+    color: #e91e63;
+}
+
+/* Loading spinner para el botón */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+form button[type="submit"].loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    right: 20px;
+    margin-top: -8px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.6s linear infinite;
+}
+
+form button[type="submit"].loading {
+    position: relative;
+    padding-right: 50px;
+}
+
+/* Toast de notificación */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 9999;
+    animation: slideInRight 0.4s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.toast.success {
+    border-left: 4px solid #4caf50;
+}
+
+.toast.error {
+    border-left: 4px solid #f44336;
+}
+
+.toast.info {
+    border-left: 4px solid #2196f3;
+}
+
+/* Logo INE en el formulario */
+.form-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-logo img {
+    max-width: 150px;
+    height: auto;
+}
+
+/* Progress bar para registro multi-step */
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #e0e0e0;
+    z-index: 0;
+}
+
+.progress-step {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #999;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.progress-step.active {
+    background: linear-gradient(135deg, #e91e63, #9c27b0);
+    border-color: #e91e63;
+    color: white;
+}
+
+.progress-step.completed {
+    background: #4caf50;
+    border-color: #4caf50;
+    color: white;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    form {
+        background: #f3f3f3;
+        color: #fff;
+    }
+    
+    form input {
+        background: #2a2a2a;
+        color: #fff;
+        border-color: #404040;
+    }
+    
+    form input::placeholder {
+        color: #888;
+    }
+    
+
+}

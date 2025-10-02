@@ -2,17 +2,60 @@
 {% load static %}
 
 {% block title %}
-    Inicio de sesion - INE  
+    Inicio de sesión - INE  
+{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
 {% endblock %}
 
 {% block content %}
 <form action="{% url 'login_process' %}" method="POST">
     {% csrf_token %}
-    <input type="email" placeholder="Ingresa tu correo" name="email">
-    <input type="password" placeholder="Ingresa tu contraseña" name="password">
-    <button type="submit">Iniciar sesion</button>
-    {% for message in messages %}<p>{{ message }}</p>{% endfor %}
+    
+    <div class="form-logo">
+        <img src="https://micorreo.ine.mx/skins/elastic/images/ine-logo.png?s=1606950775" alt="Logo INE">
+    </div>
+    
+    <h2>Iniciar Sesión</h2>
+    
+    <input type="email" placeholder="Correo electrónico" name="email" required>
+    
+    <div class="password-toggle">
+        <input type="password" placeholder="Contraseña" name="password" id="password" required>
+        <button type="button" class="password-toggle-btn" onclick="togglePassword()">👁️</button>
+    </div>
+    
+    <div class="form-checkbox">
+        <input type="checkbox" id="remember" name="remember">
+        <label for="remember">Recordarme</label>
+    </div>
+    
+    <div class="forgot-password">
+        <a href="#">¿Olvidaste tu contraseña?</a>
+    </div>
+    
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+    
+    <button type="submit">Iniciar sesión</button>
 </form>
 
-<p>Aun no tienes cuenta? <a href="{% url 'signup' %}"> Crea una dando click aqui</a></p>
+<p>¿Aún no tienes cuenta? <a href="{% url 'signup' %}">Créa una dando click aquí</a></p>
+
+<script>
+function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const toggleBtn = document.querySelector('.password-toggle-btn');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleBtn.textContent = '🙈';
+    } else {
+        passwordInput.type = 'password';
+        toggleBtn.textContent = '👁️';
+    }
+}
+</script>
 {% endblock %}

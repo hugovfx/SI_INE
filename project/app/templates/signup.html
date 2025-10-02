@@ -2,20 +2,125 @@
 {% load static %}
 
 {% block title %}
-    Inicio de sesion - INE  
+    Registro - INE  
+{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
 {% endblock %}
 
 {% block content %}
 <form action="{% url 'signup_process' %}" method="POST">
     {% csrf_token %}
-    <input type="text" name="nombre_completo" placeholder="Ingresa tu nombre completo">
-    <input type="text" name="curp" placeholder="Ingresa tu curp">
-    <input type="email" placeholder="Ingresa tu correo" name="email">
-    <input type="password" placeholder="Ingresa tu contraseña" name="password">
-    <input type="password" placeholder="Confirma tu contraseña" name="confirm">
+    
+    <div class="form-logo">
+        <img src="https://micorreo.ine.mx/skins/elastic/images/ine-logo.png?s=1606950775" alt="Logo INE">
+    </div>
+    
+    <h2>Crear Cuenta</h2>
+    
+    <input type="text" name="nombre_completo" placeholder="Nombre completo" required>
+    
+    <input type="text" name="curp" placeholder="CURP (18 caracteres)" maxlength="18" required style="text-transform: uppercase;">
+    
+    <input type="email" placeholder="Correo electrónico" name="email" required>
+    
+    <div class="password-toggle">
+        <input type="password" placeholder="Contraseña" name="password" id="password" required>
+        <button type="button" class="password-toggle-btn" onclick="togglePassword('password')">👁️</button>
+    </div>
+    <div class="password-strength" id="strengthBar"></div>
+    
+    <div class="password-toggle">
+        <input type="password" placeholder="Confirma tu contraseña" name="confirm" id="confirm" required>
+        <button type="button" class="password-toggle-btn" onclick="togglePassword('confirm')">👁️</button>
+    </div>
+    
+    <div class="form-checkbox">
+        <input type="checkbox" id="terms" required>
+        <label for="terms">Acepto el <a href="{% url 'priv' %}" target="_blank" style="color: #e91e63;">Aviso de Privacidad</a></label>
+    </div>
+    
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+    
     <button type="submit">Registrarse</button>
-    {% for message in messages %}<p>{{ message }}</p>{% endfor %}
 </form>
 
-<p>Ya tienes cuenta? <a href="{% url 'login' %}"> Inicia sesion dando click aqui</a></p>
+<p>¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión dando click aquí</a></p>
+
+<script>
+function togglePassword(inputId) {
+    const passwordInput = document.getElementById(inputId);
+    const toggleBtn = passwordInput.parentElement.querySelector('.password-toggle-btn');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleBtn.textContent = '🙈';
+    } else {
+        passwordInput.type = 'password';
+        toggleBtn.textContent = '👁️';
+    }
+}
+
+// Indicador de fuerza de contraseña
+document.getElementById('password').addEventListener('input', function(e) {
+    const password = e.target.value;
+    const strengthBar = document.getElementById('strengthBar');
+    
+    if (password.length === 0) {
+        strengthBar.className = 'password-strength';
+        return;
+    }
+    
+    let strength = 0;
+    if (password.length >= 8) strength++;
+    if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+    if (/[0-9]/.test(password)) strength++;
+    if (/[^a-zA-Z0-9]/.test(password)) strength++;
+    
+    strengthBar.className = 'password-strength';
+    if (strength <= 1) strengthBar.classList.add('weak');
+    else if (strength <= 2) strengthBar.classList.add('medium');
+    else if (strength >= 3) strengthBar.classList.add('strong');
+});
+
+// Validación de CURP
+document.querySelector('input[name="curp"]').addEventListener('input', function(e) {
+    this.value = this.value.toUpperCase();
+});
+
+// Validación al enviar el formulario
+document.querySelector('form').addEventListener('submit', function(e) {
+    const password = document.getElementById('password').value;
+    const confirm = document.getElementById('confirm').value;
+    const curp = document.querySelector('input[name="curp"]').value;
+    
+    // Validar que las contraseñas coincidan
+    if (password !== confirm) {
+        e.preventDefault();
+        alert('Las contraseñas no coinciden. Por favor, verifica e intenta nuevamente.');
+        document.getElementById('confirm').focus();
+        return;
+    }
+    
+    // Validar longitud de CURP
+    if (curp.length !== 18) {
+        e.preventDefault();
+        alert('El CURP debe tener exactamente 18 caracteres.');
+        document.querySelector('input[name="curp"]').focus();
+        return;
+    }
+    
+    // Validar formato básico de CURP
+    const curpRegex = /^[A-Z]{4}\d{6}[HM][A-Z]{5}[0-9A-Z]\d$/;
+    if (!curpRegex.test(curp)) {
+        e.preventDefault();
+        alert('El formato del CURP no es válido. Por favor, verifica e intenta nuevamente.');
+        document.querySelector('input[name="curp"]').focus();
+        return;
+    }
+});
+</script>
 {% endblock %}

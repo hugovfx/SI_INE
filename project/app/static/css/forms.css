@@ -8,7 +8,6 @@ body {
     justify-content: center;
     background: linear-gradient(135deg, #e91e63, #9c27b0);
     position: relative;
-    overflow: hidden;
 }
 
 /* Efecto de fondo animado */
@@ -121,6 +120,31 @@ form button[type="submit"]:active {
     box-shadow: 0 8px 20px rgba(233,30,99,0.3);
 }
 
+.send{
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #e91e63, #9c27b0);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 10px 25px rgba(233,30,99,0.3);
+}
+
+.send:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(233,30,99,0.4);
+}
+
+.send:active {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(233,30,99,0.3);
+}
+
 /* Mensajes de error/éxito */
 form p {
     background: #ffebee;
@@ -168,7 +192,7 @@ body > p a:hover {
 }
 
 /* Efecto de carga en el botón */
-form button[type="submit"]:disabled {
+.send:disabled {
     background: #ccc;
     cursor: not-allowed;
     transform: none;

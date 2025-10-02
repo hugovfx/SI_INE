@@ -26,13 +26,13 @@
     <input type="email" placeholder="Correo electrónico" name="email" required>
     
     <div class="password-toggle">
-        <input type="password" placeholder="Contraseña" name="password" id="password" required>
+        <input type="password" placeholder="Contraseña" name="password" id="password" required title="Mínimo 8 caracteres, con mayúsculas, minúsculas y un número">
         <button type="button" class="password-toggle-btn" onclick="togglePassword('password')">👁️</button>
     </div>
     <div class="password-strength" id="strengthBar"></div>
     
     <div class="password-toggle">
-        <input type="password" placeholder="Confirma tu contraseña" name="confirm" id="confirm" required>
+        <input type="password" placeholder="Confirma tu contraseña" name="confirm" id="confirm" required title="Las contraseñas deben coincidir">
         <button type="button" class="password-toggle-btn" onclick="togglePassword('confirm')">👁️</button>
     </div>
     
@@ -45,7 +45,7 @@
         <p>{{ message }}</p>
     {% endfor %}
     
-    <button type="submit">Registrarse</button>
+    <button type="submit" id="enviar" class="send">Registrarse</button>
 </form>
 
 <p>¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión dando click aquí</a></p>
@@ -68,6 +68,7 @@ function togglePassword(inputId) {
 document.getElementById('password').addEventListener('input', function(e) {
     const password = e.target.value;
     const strengthBar = document.getElementById('strengthBar');
+    const send = document.getElementById('enviar');
     
     if (password.length === 0) {
         strengthBar.className = 'password-strength';
@@ -84,6 +85,8 @@ document.getElementById('password').addEventListener('input', function(e) {
     if (strength <= 1) strengthBar.classList.add('weak');
     else if (strength <= 2) strengthBar.classList.add('medium');
     else if (strength >= 3) strengthBar.classList.add('strong');
+
+    send.disabled = (strength < 2);
 });
 
 // Validación de CURP
